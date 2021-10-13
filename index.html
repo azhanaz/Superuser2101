@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Covid Dashboard
+    </title>
+    <link rel="shortcut icon" href="./static/images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./static/css/grid.css">
+    <link rel="stylesheet" href="./static/css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body class="loading">
+    <!-- top nav -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <div class="nav">
+                <a href="" class="logo">
+                    C<i class="bx bxs-virus-block bx-tada"></i>VID Dashboard
+                </a>
+                
+                
+                <div class = "right-navigation">
+                    <div class="darkmode-switch" id="darkmode-switch">
+                        <span>
+                            <i class="bx bxs-moon"></i>
+                            <i class="bx bxs-sun"></i>      
+                        </span>
+                                        
+                    </div>
+                    <div>
+                        <a class="user-button" id= "userPage" onclick = "userPage()">
+                            SuperUser
+                        </a>
+  
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <!-- end top nav -->
+
+    <!-- main content -->
+    <div class="content">
+        <div class="container">
+            <!-- country select -->
+           
+            <!-- end country select -->
+
+            <!-- tracking information -->
+            <div class="row" >
+                <!-- left content -->
+                <div class="col-8 col-md-12 col-sm-12" >
+                    <div class="row" >
+                        <!-- counter -->
+                        <div class="col-4 col-md-4 col-sm-12">
+                            <div class="box box-hover">
+                                <div class="count count-confirmed">
+                                    <div class="count-info" style="display: none;">
+                                        <h5 id="confirmed-total">123,456,789</h5>
+                                        <span>confirmed</span>
+                                    </div>
+                                    MALAYSIA
+                                </div>
+                            </div>
+                        </div>
+                        <!-- counter -->
+                        <!-- counter -->
+                        <div class="col-4 col-md-4 col-sm-12">
+                            <div class="box box-hover">
+                                <div class="count count-recovered">
+                                    <div class="count-info" style="display: none;">
+                                        <h5 id="recovered-total">123,456,789</h5>
+                                        <span>recovered</span>
+                                    </div>
+                                    <div id="date"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- counter -->
+                        <!-- counter -->
+                        <div class="col-4 col-md-4 col-sm-12" >
+                            <div class="box box-hover">
+                                <div class="count count-death">
+                                    <div class="count-info" style="display: none;">
+                                        <h5 id="death-total">123,456,789</h5>
+                                        <span>deaths</span>
+                                    </div>
+                                    <div id="clock"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- counter -->
+                        <!-- HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header" id="today_new_cases">
+                                </div>
+                                <div class="box-body">
+                                    <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                                        <canvas id="daily_confirm_case_chart" style="width:100%;max-width:600px;height: 300px;"></canvas>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header" id="today_death_cases">
+                                </div>
+                                <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                                    <canvas id="daily_death_case_chart" style="width:100%;max-width:600px;height: 300px;"></canvas>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header" id="today_recovered_cases">
+                                </div>
+                                <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                                    <canvas id="daily_recovered_case_chart" style="width:100%;max-width:600px;height: 300px;"></canvas>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header" id="today_vaccinated_cases">
+                                </div>
+                                <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                                    <canvas id="daily_vaccinated_case_chart" style="width:100%;max-width:600px;height: 300px;"></canvas>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="box">
+                                <div class="box-header" id="today_tested_cases">
+                                </div>
+                                <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+                                    <canvas id="daily_tested_case_chart" style="width:100%;max-width:600px;height: 300px;"></canvas>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6" style="display: none;">
+                            <div class="box">
+                                <div id="hello">hello</div>
+                            </div>
+                        </div>
+
+                        <!-- all time chart -->
+                        <div class="col-6" style="display: none;">
+                            <div class="box">
+                                <div class="box-header">
+                                </div>
+                                <div class="box-body">
+                                    <div id="all-time-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- end all time chart -->
+
+
+                    </div>
+                </div>
+                <!-- end left content -->
+
+                <!-- right content -->
+                <div class="col-4 col-md-12 col-sm-12" >
+                    <!-- 30 days chart -->
+                    <div class="box" style="display: none;">
+                        <div class="box-header">
+                            last 30 days
+                        </div>
+                        <div class="box-body">
+                            <div id="days-chart"></div>
+                        </div>
+                    </div>
+                    <!-- end 30 days chart -->
+
+                    <!-- recovery rate chart -->
+                    <div class="box" style="display: none;">
+                        <div class="box-header">
+                            recovery rate
+                        </div>
+                        <div class="box-body">
+                            <div id="recover-rate-chart"></div>
+                        </div>
+                    </div>
+                    <!-- end recovery rate chart -->
+
+                    <!-- top country affected -->
+                    <div class="box">
+                        <div class="box-header">
+                            top countries affected
+                        </div>
+                        <div class="box-body">
+                            <table class="table-countries" id="table-countries">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Country
+                                        </th>
+                                        <th>Total Confirmed Cases</th>
+                                        
+                                        <th>Total Confirmed Deaths</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        
+                                        <td>test</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end top country affected -->
+                    <!-- embed video -->
+                    
+                        <div class="box">
+                            <div class="box-header">
+                                what is covid-19
+                            </div>
+                            <div class="box-body">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/OZcRD9fV7jo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        
+
+                    
+                    <!-- end embed video -->
+
+                    <!-- embed video -->
+                    
+                        <div class="box">
+                            <div class="box-header">
+                                COVID-19: Where to next? - A Different Lens 
+                            </div>
+                            <div class="box-body">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/LIe9lMXwus8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    
+                    <!-- end embed video -->
+                </div>
+                <!-- end right content -->
+            </div>
+            <!-- end tracking information -->
+        </div>
+    </div>
+    <!-- end main content -->
+
+    <!-- footer -->
+    <div class="footer">
+        Source from <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc#b07f97ba-24f4-4ebe-ad71-97fa35f3b683" target="_blank">api.covid19api.com</a>
+        <br>
+        Designed by <a href style="color:white">Group B4 led by Azhan</a>
+    </div>
+    <!-- end footer -->
+
+    <!-- loader -->
+    <div class="loader">
+        <i class="bx bxs-virus bx-spin"></i>
+    </div>
+    <!-- end loader -->
+
+    <!-- apexchart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- JS -->
+    <script src="./static/js/fetchApi.js"></script>
+    <script src="./static/js/covidApi.js"></script>
+    <script src="./static/js/app.js"></script>
+
+    <!-- Graph -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <script src="./static/js/dashboard.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyB2jKX6IV_zdri-FYVqkf1GmbIhO5YOQBQ",
+          authDomain: "fir-covid-tracker-253ec.firebaseapp.com",
+          databaseURL: "https://fir-covid-tracker-253ec-default-rtdb.firebaseio.com",
+          projectId: "fir-covid-tracker-253ec",
+          storageBucket: "fir-covid-tracker-253ec.appspot.com",
+          messagingSenderId: "240324699245",
+          appId: "1:240324699245:web:7a1c81fc3398c92b778b64"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {getDatabase, ref, set, get, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js"
+       
+        const db = getDatabase();
+        const dbref = ref(db)
+        
+        get(dbref, "Accounts/").then((snapshot)=>{
+            let value = snapshot.val();
+            let data = "";
+            let hello = document.getElementById("hello");
+            snapshot.forEach(function(childSnapshot){
+                childSnapshot.forEach(function(childSnapshot){
+                    console.log(childSnapshot.val());
+                    /*alert("Phone number: "+childSnapshot.val()._phonenumber + "\n"
+                        +"Email: "+childSnapshot.val()._userEmail + "\n"
+                        +"Password: "+childSnapshot.val()._password + "\n"
+                        +"Username: "+childSnapshot.val()._username + "\n"
+                        +"Last login: "+childSnapshot.val()._last_login + "\n"
+                        +"Number of login: "+childSnapshot.val()._number_of_login);*/
+                    
+                        data += "Username: "+childSnapshot.val()._username + "</br>"
+                        +"Phone number: "+childSnapshot.val()._phonenumber + "</br>"
+                        +"Email: "+childSnapshot.val()._userEmail + "</br>"
+                        +"Password: "+childSnapshot.val()._password + "</br>"
+                        +"Last login: "+childSnapshot.val()._last_login + "</br>"
+                        +"Number of login: "+childSnapshot.val()._number_of_login + "</br></br>"
+
+                        
+                        hello.innerHTML = data
+            })
+            })
+        });
+        
+        </script>
+</body>
+
+</html>

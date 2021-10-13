@@ -1,0 +1,45 @@
+:root {
+    --bg-body: #C6FFC1;
+    --bg-content: #9FE6A0;
+    --bg-hover: #f4f4f4;
+
+    --color-txt: #0c306e;
+
+    --nav-height: 70px;
+
+    --shadow: 0 0 30px 0 rgb(82 63 105 / 5%);
+}
+
+body {
+    font-family: 'Merriweather', serif;
+}
+
+.centered {
+    margin: 0 auto;
+    text-align: left;
+    width: 200px;
+    height: 100px;
+}
+
+
+.right-navigation {
+    display: flex;
+    justify-content: space-around;
+}
+
+.back-button{
+    color: var(--color-txt);
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: grab;
+    margin-right: 15px;
+}
+
+.logout-button{
+    color: var(--color-txt);
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: grab;
+
+}
+
